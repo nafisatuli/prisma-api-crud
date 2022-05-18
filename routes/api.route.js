@@ -28,8 +28,9 @@ router.get('/products/:id', async(req, res, next) => {
             include: { category: true }
         })
         res.json(product)
-
-
+            //add a new attribute, stop the terminal and then -> npx prisma generate
+        console.log(product.quantity)
+            //then validate our database by npx prisma migrate dev
     } catch (error) {
         next(error)
     }
