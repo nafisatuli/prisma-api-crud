@@ -17,6 +17,19 @@ router.get('/products', async(req, res, next) => {
         next(error);
     }
 })
+router.get('/products/:id', async(req, res, next) => {
+    try {
+        const { id } = req.params;
+        const product = await prisma.product.findUnique({
+            where: {
+                id: Number(id)
+            }
+        })
+        res.json(product)
+    } catch (error) {
+        next(error)
+    }
+});
 
 router.post('/products', async(req, res, next) => {
     try {
@@ -29,11 +42,6 @@ router.post('/products', async(req, res, next) => {
         next(error)
     }
 });
-
-router.get('/products/:id', async(req, res, next) => {
-    res.send({ message: 'Ok api is working 🚀' });
-});
-
 
 router.delete('/products/:id', async(req, res, next) => {
     res.send({ message: 'Ok api is working 🚀' });

@@ -5,7 +5,10 @@ POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-    "name":"iphone 13",
+    "name":"iphone 11",
     "price":1000,
     "categoryId":1
 }
+
+###
+GET http://localhost:3000/api/products/5
