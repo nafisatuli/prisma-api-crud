@@ -11,7 +11,17 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/products/5
+GET http://localhost:3000/api/products/1
 
 ###
 DELETE http://localhost:3000/api/products/5
+
+###
+PATCH http://localhost:3000/api/products/1
+Content-Type: application/json
+
+{
+    "name":"Oppo",
+    "price":500,
+    "categoryId":1
+}
