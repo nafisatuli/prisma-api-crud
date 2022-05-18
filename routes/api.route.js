@@ -9,23 +9,31 @@ router.get('/products', async(req, res, next) => {
         const products = await prisma.product.findMany({
             include: { category: true }
         });
-        res.json(products);
+        const categories = await prisma.category.findMany({
+            include: { products: true }
+        });
+        res.json({ products, categories });
     } catch (error) {
         next(error);
     }
 })
 
-router.get('/products', async(req, res, next) => {
-    res.send({ message: 'Ok api is working 🚀' });
+router.post('/products', async(req, res, next) => {
+    try {
+        const data = req.body;
+        const product = await prisma.product.create({
+            data
+        });
+        res.json(product);
+    } catch (error) {
+        next(error)
+    }
 });
 
 router.get('/products/:id', async(req, res, next) => {
     res.send({ message: 'Ok api is working 🚀' });
 });
 
-router.post('/products', async(req, res, next) => {
-    res.send({ message: 'Ok api is working 🚀' });
-});
 
 router.delete('/products/:id', async(req, res, next) => {
     res.send({ message: 'Ok api is working 🚀' });
