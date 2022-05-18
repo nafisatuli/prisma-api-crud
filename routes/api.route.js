@@ -6,7 +6,9 @@ const prisma = new PrismaClient();
 
 router.get('/products', async(req, res, next) => {
     try {
-        const products = await prisma.product.findMany({});
+        const products = await prisma.product.findMany({
+            include: { category: true }
+        });
         res.json(products);
     } catch (error) {
         next(error);
